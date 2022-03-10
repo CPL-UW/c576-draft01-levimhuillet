@@ -1,4 +1,4 @@
-# Winsurance Tower Defense
+# Win-surance Tower Defense
 
 Author: Levi Huillet
 
@@ -11,7 +11,8 @@ Learning Objectives: Insurance (why it's important and Adverse Selection)
 
 Game Overview:
 
-	You are managing a weather control station in the birthplace of all the world's storms and natural disasters. As you can imagine, this location affords lots of research opportunities, but also high risks. Heavy infrastructure damage is common.
+	You are managing a weather control station in the birthplace of all the world's storms and natural disasters.
+	As you can imagine, this location affords lots of research opportunities, but also high risks. Heavy infrastructure damage is common.
 	Luckily, you can buy insurance. You and other stations in the region are all insured under a company called Win-surance Co.
 	This game teaches basic principles of insurance (such as why someone might want insurance), as well as the more advanced principle of insurance known as Adverse Selection.
 
@@ -38,9 +39,11 @@ Insurance Aspects:
 
 Multiplayer Aspects:
 
-	- Nothing yet, but working on requesting and sending aid to other players, each managing their own base.
+	- If the host sends a request for help, both players receive the notification
 
 	- Once they are implemented, multiple players will be key for teaching about Adverse Selection
+	
+	- Build1 and Build2 are included to facilitate running in multiplayer
 	
 	
 Miscellaneous Mechanics:
@@ -48,3 +51,10 @@ Miscellaneous Mechanics:
 	- Elements spawn out of Nexuses, which in turn spawn from Chaos Butterflies. Every butterfly that crosses the screen has a chance to instigate a Nexus pretty much anywhere, which grows and grows before moving to its designated spawn point. How many enemies a Nexus spawns depends on how much it grew during its growth stage.
 
 	- Player receives $35 per period to pay for towers and insurance
+
+
+Issues (Mostly Multiplayer):
+
+	- Returning to the main menu currently breaks what little multiplayer there is because the host camera and UI despawn
+	
+	- I haven't succeeded in making the request for help work from the client-side yet
