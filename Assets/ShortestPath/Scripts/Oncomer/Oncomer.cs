@@ -31,6 +31,7 @@ public class Oncomer : MonoBehaviour {
     private List<TileData.WalkType> m_canWalkOn;
     private List<Vector2> m_waypoints;
     private float m_speed;
+    private float m_dmg;
     private bool m_movesDiagonal;
     private int m_currWaypointIndex;
 
@@ -43,7 +44,6 @@ public class Oncomer : MonoBehaviour {
     private void Awake() {
         if (m_type == Type.Spider || m_type == Type.Salamander) {
             // Framework Case
-            Debug.Log("Framework spawning");
             this.OncomerData = GameDB.instance.GetOncomerData(m_type);
 
             ApplyOncomerData();
@@ -57,19 +57,40 @@ public class Oncomer : MonoBehaviour {
         ApplyOncomerData();
 
         CalculatePath();
+
+        LevelManager.instance.RegisterOncomer();
     }
 
+    public void ManualAwake(Nexus.SevereEffects severeEffects) {
+        ApplyOncomerData();
+
+        ApplySevereEffects(severeEffects);
+
+        CalculatePath();
+
+        LevelManager.instance.RegisterOncomer();
+    }
+
+
     private void Update() {
+        if (GameManager.instance.IsPaused) {
+            return;
+        }
+
         MoveThroughPoints();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "station") {
             // TODO: get this number from oncomer data
-            LevelManager.instance.DamageStation(5);
+            LevelManager.instance.DamageStation(m_dmg, m_type);
 
             Destroy(this.gameObject);
         }
+    }
+
+    private void OnDestroy() {
+        LevelManager.instance.RemoveOncomer();
     }
 
     private void MoveThroughPoints() {
@@ -110,9 +131,16 @@ public class Oncomer : MonoBehaviour {
         GetComponent<SpriteRenderer>().sprite = this.OncomerData.Sprite;
         m_canWalkOn = this.OncomerData.CanWalkOn;
         m_speed = this.OncomerData.Speed;
+        m_dmg = this.OncomerData.Dmg;
         m_maxHealth = this.OncomerData.MaxHealth;
         m_currHealth = m_maxHealth;
         m_movesDiagonal = this.OncomerData.MovesDiagonal;
+    }
+
+    private void ApplySevereEffects(Nexus.SevereEffects effects) {
+        m_maxHealth *= (1 + effects.HealthBonusMult);
+        m_currHealth = m_maxHealth;
+        m_dmg *= (1 + effects.DamageBonusMult);
     }
 
     private void CalculatePath() {

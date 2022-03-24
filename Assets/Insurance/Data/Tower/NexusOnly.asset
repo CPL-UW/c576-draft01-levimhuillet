@@ -20,5 +20,5 @@ MonoBehaviour:
   m_radius: 3
   m_projectileSoundID: projectile-default
   m_projectilePrefab: {fileID: 7706054819071973796, guid: a78acdf8f38343447a942451b67da1d5, type: 3}
-  m_projectileDamage: 1.8
+  m_projectileDamage: 0.9
   m_cost: 25

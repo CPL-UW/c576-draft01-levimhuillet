@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tiles:
   - {fileID: 11400000, guid: 83e1f41f19c961b4fa882a02d51790b3, type: 2}
+  - {fileID: 11400000, guid: adb3d3b1a6355734bbfb617e4ca46260, type: 2}
   m_walkType: 1
+  m_towerPlaceable: 0

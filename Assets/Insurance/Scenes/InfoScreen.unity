@@ -827,9 +827,9 @@ MonoBehaviour:
     Co.
 
 
-    This game teaches basic principles of insurance (such as why someone
-    might want insurance), as well as the more advanced principle of insurance known
-    as Adverse Selection.'
+    When complete, this game will teach basic principles of insurance (such
+    as why someone might want insurance), as well as the more advanced principle
+    of insurance known as Adverse Selection.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

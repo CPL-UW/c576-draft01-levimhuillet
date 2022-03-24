@@ -10,10 +10,6 @@ public class TilemapManager : MonoBehaviour {
 
     #region TileData
 
-    [SerializeField]
-    private List<TileData> m_tileDataList;
-
-    [SerializeField]
     private Dictionary<TileBase, TileData> m_tileDataDict;
 
     [SerializeField]
@@ -38,13 +34,7 @@ public class TilemapManager : MonoBehaviour {
             Debug.Log("Warning! You have multiple TilemapManagers simultaneously. This may result in unexpected behavior.");
         }
 
-        m_tileDataDict = new Dictionary<TileBase, TileData>();
-
-        foreach(TileData tileData in m_tileDataList) {
-            foreach (var tile in tileData.Tiles) {
-                m_tileDataDict.Add(tile, tileData);
-            }
-        }
+        m_tileDataDict = GameDB.instance.GetTileDataDict();
 
         if (m_map == null) {
             Debug.Log("No Tilemap assigned. Shortest paths cannot be calculated.");
@@ -131,8 +121,7 @@ public class TilemapManager : MonoBehaviour {
                     ref currWaypoints,
                     ref shortestWaypoints,
                     movesDiagonal
-                    ))
-                    {
+                    )) {
                     foundPath = true;
                 }
             }
@@ -336,8 +325,8 @@ public class TilemapManager : MonoBehaviour {
         int[,] arr = new int[mapY, mapX];
 
         // for each tile in the tilemap, in the array place a:
-            // 0 for tiles the given Oncomer can move through
-            // 2 for tiles the given Oncomer cannot move through
+        // 0 for tiles the given Oncomer can move through
+        // 2 for tiles the given Oncomer cannot move through
         // (1 is reserved for marking a cell as "visited" in the shortest path algorithm)
 
         int rowIndex = 0;
@@ -376,8 +365,12 @@ public class TilemapManager : MonoBehaviour {
             rowIndex++;
         }
 
-        //For debugging the array
-        /*
+        // DebugArray(mapX, mapY, arr);        
+
+        return arr;
+    }
+
+    private void DebugArray(int mapX, int mapY, int[,] arr) {
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
         for (int i = 0; i < mapY; i++) {
             for (int j = 0; j < mapX; j++) {
@@ -387,10 +380,6 @@ public class TilemapManager : MonoBehaviour {
             sb.AppendLine();
         }
         Debug.Log(sb.ToString());
-        */
-        
-
-        return arr;
     }
 
     private List<Vector2> ConvertArrayPointsToMap(List<Vector2> waypoints) {
@@ -469,4 +458,68 @@ public class TilemapManager : MonoBehaviour {
         // return true if a tower was detected, false otherwise
         return collider != null;
     }
+
+    #region Grid Loading
+
+    public void LoadGridFromArray(TextAsset inputTA) {
+        if (inputTA == null) {
+            Debug.Log("Failed to load grid from array: input text is null");
+            return;
+        }
+
+        m_map.ClearAllTiles();
+        m_map.CompressBounds();
+
+        List<string> inputStrings = TextIO.TextAssetToList(inputTA, '|');
+
+        LoadStringsIntoGrid(inputStrings);
+
+        Debug.Log("successfully loaded grid from array");
+    }
+
+    private void LoadStringsIntoGrid(List<string> inputStrings) {
+        List<TileData> tileDataList = GameDB.instance.GetTileDataList();
+
+        // first two strings are mapX, mapY, adjustX, adjustY
+        int mapX = int.Parse(inputStrings[0]);
+        int mapY = int.Parse(inputStrings[1]);
+        int adjustX = int.Parse(inputStrings[2]);
+        int adjustY = int.Parse(inputStrings[3]);
+
+        // load in
+        int inputListIndex = 4;
+        int rowIndex = 0;
+        int colIndex = 0;
+        for (int row = 0; row < mapY; ++row) {
+            for (int col = 0; col < mapX; ++col) {
+                // get tile and data
+                string dataTileStr = inputStrings[inputListIndex];
+                inputListIndex++; // increment for future loops
+                int breakIndex = dataTileStr.IndexOf('.');
+                int dataIndex = int.Parse(dataTileStr.Substring(0, breakIndex));
+                int tileIndex = int.Parse(dataTileStr.Substring(breakIndex + 1));
+
+                if (dataIndex == -1 || tileIndex == -1) {
+                    // tile is empty; leave empty
+                    continue;
+                }
+
+                TileBase tile = tileDataList[dataIndex].Tiles[tileIndex];
+
+                // calculate adjusted position on grid
+                Vector3Int gridPos = new Vector3Int(col - adjustX, -(row - adjustY), 0);
+
+                // set tile
+                m_map.SetTile(gridPos, tile);
+
+                colIndex++;
+            }
+            colIndex = 0;
+            rowIndex++;
+        }
+
+        return;
+    }
+
+    #endregion // Grid Loading
 }

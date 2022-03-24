@@ -14,6 +14,8 @@ public class OncomerData : ScriptableObject
     [SerializeField]
     private float m_speed;
     [SerializeField]
+    private float m_dmg;
+    [SerializeField]
     private float m_maxHealth;
     [SerializeField]
     private bool m_movesDiagonal = false;
@@ -29,6 +31,9 @@ public class OncomerData : ScriptableObject
     }
     public float Speed {
         get { return m_speed; }
+    }
+    public float Dmg {
+        get { return m_dmg; }
     }
     public float MaxHealth {
         get { return m_maxHealth; }

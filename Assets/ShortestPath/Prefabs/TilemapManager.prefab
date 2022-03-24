@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9161132344021951670}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6949304914055353092
 GameObject:
@@ -60,7 +60,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9161132344021951670}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7979290659748239356
 GameObject:
@@ -91,7 +91,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9161132344021951670}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9161132344021951624
 GameObject:
@@ -122,9 +122,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6379879930379335711}
   - {fileID: 8331703305851621980}
   - {fileID: 2607914037738769969}
+  - {fileID: 6379879930379335711}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -140,17 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e289890fbdff7fd41b905ea2a6c11f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_tileDataList:
-  - {fileID: 11400000, guid: 702b1ffe6c3d96a419beb256f13201b1, type: 2}
-  - {fileID: 11400000, guid: 83b98d2aec3f4864ebc2376fd3ddaa86, type: 2}
-  - {fileID: 11400000, guid: 4c84fea44d1366144b5d2401ac2a8fac, type: 2}
-  - {fileID: 11400000, guid: dea0aec51613e8e40aa2059357f989c5, type: 2}
-  - {fileID: 11400000, guid: b1fbad448b603aa478d569001256aadb, type: 2}
-  - {fileID: 11400000, guid: 9c6c26309684a1d448016b0a6e7b1a9e, type: 2}
-  - {fileID: 11400000, guid: 67d7511e32caa314b93fc1fd1b1ec113, type: 2}
-  - {fileID: 11400000, guid: fc39fb55351c273429c95dbff8183ca2, type: 2}
-  - {fileID: 11400000, guid: 463bb6b3406a6244ab41f2c362d4273a, type: 2}
-  - {fileID: 11400000, guid: 524b8fffc13eebe4ab6cd88ceba4bb08, type: 2}
   m_deluvianNexusHub: {fileID: 6379879930379335711}
   m_fireSwatheNexusHub: {fileID: 8331703305851621980}
   m_stormNexusHub: {fileID: 2607914037738769969}
