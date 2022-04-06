@@ -9,6 +9,10 @@ Feature: Multiplayer Sync
 Learning Objectives: Insurance (why it's important and Adverse Selection)
 
 
+Logging Update:
+	Game now logs the end of level (whether death, completion, or quit) and levelID in addition to general info like userID, time, etc.
+
+
 Game Overview:
 
 	You are managing a weather control station in the birthplace of all the world's storms and natural disasters.

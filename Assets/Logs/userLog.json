@@ -1,0 +1,6 @@
+{"version":"0.0.1","datetime":"2022-04-05 23:24:14","epoch":1649219054212.0,"eventKey":"purchase-insurance-complete","levelID":"n/a","userID":"dummyId"}
+{"version":"0.0.1","datetime":"2022-04-05 23:25:34","epoch":1649219134195.0,"eventKey":"level-complete","levelID":"level01","userID":"dummyId"}
+{"version":"0.0.1","datetime":"2022-04-05 23:25:39","epoch":1649219139526.0,"eventKey":"purchase-insurance-complete","levelID":"n/a","userID":"dummyId"}
+{"version":"0.0.1","datetime":"2022-04-05 23:25:41","epoch":1649219141532.0,"eventKey":"level-quit","levelID":"level02","userID":"dummyId"}
+{"version":"0.0.1","datetime":"2022-04-05 23:25:45","epoch":1649219145352.0,"eventKey":"purchase-insurance-complete","levelID":"n/a","userID":"dummyId"}
+{"version":"0.0.1","datetime":"2022-04-05 23:25:48","epoch":1649219148068.0,"eventKey":"level-quit","levelID":"level03","userID":"dummyId"}

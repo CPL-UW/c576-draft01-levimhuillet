@@ -42,7 +42,7 @@ MonoBehaviour:
     Deductible: 1
     MaxCoverage: 80
   - Type: 2
-    Title: Umbrella Insurance
+    Title: Storm Insurance
     Premium: 4
     Deductible: 1
     MaxCoverage: 80
